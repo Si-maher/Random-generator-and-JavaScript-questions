@@ -1,0 +1,136 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>This page contains different scenarios that could require a random generator method.</h1>
+    <script>
+
+
+        //  1) Write a function which can generate a random Finnish social security number.
+
+        const socialSecurityNumber = () => {
+            let day, month, year, dateOfBirth;
+            let lastThreeNumbers, lastCharacter
+            let bigString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+
+
+            day = Math.ceil(Math.random() * 31)
+            if (day < 10 && day > 0) {
+                day = '0' + day;
+            }
+            month = Math.ceil(Math.random() * 12)
+            if (month < 10 && month > 0) {
+                month = '0' + month
+            }
+            year = Math.ceil(Math.random() * 99)
+            if (year < 10 && year > 0) {
+                year = '0' + year
+            }
+            dateOfBirth = `${day}${month}${year}-`
+
+
+            lastThreeNumbers = Math.ceil(Math.random() * 999)
+            if (lastThreeNumbers < 10) {
+                lastThreeNumbers = '00' + lastThreeNumbers
+            } else if (lastThreeNumbers < 100) {
+                lastThreeNumbers = '0' + lastThreeNumbers
+            }
+            lastCharacter = bigString.charAt(Math.floor(Math.random() * bigString.length))
+            return `${dateOfBirth}${lastThreeNumbers}${lastCharacter}`
+
+
+
+
+        }
+
+        console.log("Finnish SSN:", socialSecurityNumber());
+
+        // ===============================================================
+
+        //         Write a function which can generate a random Finnish car code(Car plate number).
+        //    console.log(genCarPlateNum())
+        //    AFG-205
+        //    console.log(genCarPlateNum())
+        //    JCB-586
+
+        const carRegistration = () => {
+            let threeLetters = '', threeNumbers, registrationString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+            threeNumbers = Math.ceil(Math.random() * 999)
+            if (threeNumbers < 10) {
+                threeNumbers = '00' + threeNumbers
+            } else if (threeNumbers < 100) {
+                threeNumbers = '0' + threeNumbers
+            }
+
+
+            for (let i = 0; i < 3; i++)
+                threeLetters += registrationString[Math.floor(Math.random() * registrationString.length)]
+
+            return `${threeLetters}-${threeNumbers}`
+
+        }
+        console.log("car registration:", carRegistration());
+
+        // =========================================================================
+
+        // 3) Create a random RGB generator
+
+        const randomRGBGenerator = () => {
+            let red, green, blue, color
+
+            red = Math.floor(Math.random() * 256)
+            green = Math.floor(Math.random() * 256)
+            blue = Math.floor(Math.random() * 256)
+            color = `rgb(${red},${green},${blue})`
+            return color
+        }
+        console.log(randomRGBGenerator());
+
+        // 4) Create a random Hexa generator
+
+        const randomHexaGenerator = () => {
+
+            let randomHexa = "0123456789ABCDEF"
+            let hexa = '#'
+
+
+            for (let i = 0; i < 6; i++)
+                hexa += randomHexa[Math.floor(Math.random() * randomHexa.length)]
+            return hexa
+
+        }
+        console.log(randomHexaGenerator());
+
+
+        // 5) Create a random password generator with an alert
+
+        const randomPassordGenerator = () => {
+            let passwordExample = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            let password = ""
+            for (let i = 0; i < Math.floor(Math.random() * 6 + 5); i++) {
+                password += passwordExample[(Math.floor(Math.random() * passwordExample.length))]
+            }
+            const userPassword = prompt("Please create a password between 5-10 characters")
+            if (userPassword.length < 5 || userPassword.length > 10) {
+                alert(`password length is incorrect. Example; ${password}`)
+            }
+
+
+        }
+        randomPassordGenerator()
+
+
+
+    </script>
+</body>
+
+</html>
